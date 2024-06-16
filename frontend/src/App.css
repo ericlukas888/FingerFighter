@@ -1,0 +1,71 @@
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Footer Menu Style Start */
+.FooterMenu .card {
+  background: #0C1D42;
+}
+
+.FooterMenu .nav-link.active {
+  background-image: linear-gradient(to top, #45D0DA, #0C1D42);
+  color: white !important;
+  border: 1px solid #45D0DA !important;
+  box-shadow: 0 0 10px 0px #45D0DA;
+  transition: ease-in 0.2s;
+}
+
+.FooterMenu .nav-link {
+  color: #7A90C0;
+  border: 1px solid transparent !important;
+}
+  
+  .FooterMenu .nav-link span {
+    font-size: 10px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Footer Menu Style End */
+
+/* App Style */
+.App {
+  background-image: linear-gradient(to top, #1D3F75, #0C1D42);
+  min-height: 100vh;
+  color: white;
+}
+/* App Style */
+
+/* Appbar Style */
+.dropdown-menu.show {
+  background: #1D3F75;
+  border: none;
+}
+/* Appbar Style */
+
+.progress {
+  background-color: #22345A !important;
+}
+
+.progress-bar {
+  background-image: linear-gradient(to right, #6A96FD, #FD8EDD) !important;
+  border-radius: 50px;
+}
+
+.MainPage .level-section {
+  font-size: 12px;
+  color: #828993;
+}
+
+.MainPage .card.info-card {
+  background-color: #0B1630;
+  font-size: 12px;
+}
+
+.energy-section {
+  background-color: #22345A !important;
+}
+
+.Preloader .modal-content{
+  background: #0C1D42;
+}

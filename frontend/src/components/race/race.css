@@ -1,0 +1,162 @@
+.RaceGame {
+    /* touch-action: none; */
+    height: 50vh !important;
+    overflow: hidden;
+    margin: 0;
+    background-image: url('../../assets/images/tartan.svg');
+    background-position: 0 0;
+    position: relative;
+    background-size:cover
+}
+
+.RaceGame:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to top, #1a3a6ead, transparent);
+}
+
+h1 {
+    color: #ffd3ae;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: -.05em;
+    font-size: 2em;
+    line-height: 1;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    top: 5%;
+    text-decoration: underline;
+    text-decoration-color: #333;
+}
+
+#again {
+    font-size: 2em;
+    padding: .25em .75em;
+    position: absolute;
+    z-index: 20000;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+    width: 80%;
+    border-radius: 1em;
+    background-color: #ffd3ae;
+    color: #333;
+    border: 0;
+}
+
+#instructions {
+    color: #ffd3ae;
+    position: absolute;
+
+    text-align: center;
+    font-size: 1em;
+    line-height: 1;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    top: 50%;
+    padding: 0 1em;
+    width: calc(100% - 2em);
+    margin: 0;
+}
+
+.finger {
+    width: 100%;
+    height: 50vh;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    font-size: 5em;
+    text-align: center;
+    line-height: 40vh;
+}
+
+.finger.left {
+    left: 0;
+}
+
+.hide-initially {
+    display: none;
+}
+
+#time {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 12%;
+    color: #ffd3ae;
+    text-align: center;
+    font-size: 2em;
+    line-height: 1;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    margin: 0;
+    width: 100%;
+}
+
+#remaining {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 25%;
+    color: #ffd3ae;
+    text-align: center;
+    font-size: 3em;
+    line-height: 1.5;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    margin: 0;
+    width: 100%;
+}
+
+#highscores {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15%;
+    color: #ffd3ae;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.5;
+    user-select: none;
+    /* Standard syntax */
+    margin: 0;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+#version {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2rem;
+    color: #ffd3ae;
+    font-size: 1em;
+    z-index: 2000;
+}
+
