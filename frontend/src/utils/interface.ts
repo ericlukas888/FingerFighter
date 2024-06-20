@@ -1,4 +1,4 @@
-interface TelegramWebAppUser {
+export interface TelegramWebAppUser {
     id: number;
     first_name: string;
     last_name?: string;
@@ -7,7 +7,7 @@ interface TelegramWebAppUser {
     photo_url?: string;
 }
 
-interface TelegramWebApp {
+export interface TelegramWebApp {
     initData: string;
     initDataUnsafe: {
         user: TelegramWebAppUser;
@@ -68,7 +68,7 @@ interface TelegramWebApp {
     sendData(data: string): void;
 }
 
-interface Window {
+export interface Window {
     Telegram?: {
         WebApp: TelegramWebApp;
     };

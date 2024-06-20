@@ -1,34 +1,29 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
 
-const User = sequelize.define('User', {
+const GameHistory = sequelize.define('GameHistory', {
     telegramId: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
-    first_name: {
+    score: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    last_name: {
-        type: DataTypes.STRING,
+    start_date: {
+        type: DataTypes.DATE,
         allowNull: true,
     },
-    user_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    type: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    end_date: {
+        type: DataTypes.DATE,
+        allowNull: true,
     },
     status: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false
     }
     
     // Add other user-related fields here
 });
 
-module.exports = User;
+module.exports = GameHistory;

@@ -15,7 +15,7 @@ function MainPage() {
 
   useEffect(() => {
     // Extract user data from Telegram WebApp context
-    const telegram = window.Telegram?.WebApp;
+    const telegram = window?.Telegram?.WebApp;
     const user = telegram?.initDataUnsafe.user;
 
     // Post user data to the server
