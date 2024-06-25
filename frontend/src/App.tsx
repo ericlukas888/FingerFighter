@@ -20,7 +20,7 @@ function App() {
       <PreLoader isOpen={false} />
       <BrowserRouter>
         <MainContextProvider>
-          <TonConnectUIProvider manifestUrl='https://finger-fighter-frontend.vercel.app/tonconnect-manifest.json'>
+          <TonConnectUIProvider manifestUrl='https://finger-fighter-frontend.vercel.app/tonconnect-manifest.json' actionsConfiguration={{twaReturnUrl: 'https://t.me/FingerFighterBot'}}>
             <Routes>
               <Route path='/' element={<LandingPage />} />
               <Route element={<MainLayout />}>
