@@ -20,8 +20,8 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
 
     console.log("scriptLoaded", scriptLoaded)
     const countryModalHandler = () => {
-        window.localStorage.setItem("countryModal", "true");
-        setCountryModal(true);
+        window.localStorage.setItem("countryModal", "false");
+        setCountryModal(false);
     }
 
     useEffect(() => {
