@@ -30,7 +30,7 @@ function App() {
                 <Route path='/earn' element={<EarnPage />} />
                 <Route path='/wallet' element={<WalletPage />} />
                 <Route path='/level' element={<LevelPage />} />
-                {/* Games */}
+                /* Games */
                 <Route path='/games/endless_runner' element={<EndlessRunnerGame />} />
               </Route>
             </Routes>

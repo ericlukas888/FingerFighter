@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, Col, Container, Image, Modal, ProgressBar, Row, Table } from "react-bootstrap";
 import AvatarImage from '../assets/images/avatars/1.png';
 import CoinIcon from '../assets/images/icons/coin.svg';
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa6";
 import { MainInformationCard } from "../components/Cards";
 import { Rocket } from "../components/rocket";
@@ -13,11 +13,11 @@ import axios from 'axios';
 import EndlessRunnerGame from "./games/endless_runner";
 import { useMainContext } from "../context/MainContext";
 import ReactFlagsSelect from "react-flags-select";
-import { CountryRanking } from "../utils/sampleData";
+import { CountryRanking, GameDataList } from "../utils/sampleData";
 
 function MainPage() {
 
-  const { countryModal, countryModalHandler } = useMainContext();
+  const { countryModal, countryModalHandler, user } = useMainContext();
   const [selected, setSelected] = useState("");
 
   const selectCountry = () => {
@@ -66,16 +66,29 @@ function MainPage() {
       </Modal>
       <Container className="mb-5 pt-3">
         <Row className="mb-3">
-          <Col xs={6} className="text-start">
+          <Col xs={9} className="text-start">
             <div className="d-flex flex-row align-items-center">
               <Image src={AvatarImage} height={30} width={30} className="rounded-5 border me-2" alt="avatar" />
-              <span>Eric Lukas</span>
+              <span>{user?.first_name + " " + user?.last_name}</span>
             </div>
           </Col>
-          <Col xs={6} className="text-end">Binance</Col>
+          <Col xs={3} className="text-end">Binance</Col>
         </Row>
         <hr />
-
+        <h4 className="text-uppercase">Games</h4>
+        <Row>
+          {GameDataList.map((item, index) => (
+            <Col xs={12} className="mb-3">
+                <Link to={item.router} className="d-flex nav-link">
+                  <Image className="rounded-3 me-3" src={item.image} width={100} height={100} alt="Game"/>
+                  <div>
+                    <h5>{item.name}</h5>
+                    <p>{item.description}</p>
+                  </div>
+                </Link>
+            </Col>
+          ))}
+        </Row>
       </Container>
     </div>
   );

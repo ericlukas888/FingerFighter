@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { FaUsers, FaWallet, FaSackDollar, FaBomb , FaHandPointer, FaPersonRunning   } from "react-icons/fa6";
+import { FaUsers, FaGamepad, FaWallet, FaSackDollar, FaBomb , FaRankingStar , FaPersonRunning   } from "react-icons/fa6";
 
 function FooterMenu() {
     return (
@@ -11,7 +11,7 @@ function FooterMenu() {
                         <Row className="flex flex-nowrap">
                             <Col>
                                 <NavLink to="/games" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
-                                    <FaPersonRunning   />
+                                    <FaGamepad   />
                                     <span className="mt-1">Games</span>
                                 </NavLink>
                             </Col>
@@ -23,14 +23,14 @@ function FooterMenu() {
                             </Col>
                             <Col>
                                 <NavLink to="/friends" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
-                                    <FaUsers />
-                                    <span className="mt-1">Friends</span>
+                                    <FaRankingStar  />
+                                    <span className="mt-1">Ranking</span>
                                 </NavLink>
                             </Col>
                             <Col>
                                 <NavLink to="/earn" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
                                     <FaSackDollar  />
-                                    <span className="mt-1">Earn</span>
+                                    <span className="mt-1">Rewards</span>
                                 </NavLink>
                             </Col>
                             <Col>
