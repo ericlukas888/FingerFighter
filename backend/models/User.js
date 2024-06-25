@@ -35,7 +35,10 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: true
     },
-
+    country: {
+        type: DataTypes.STRING,
+        allowNull: true
+    }
     
     // Add other user-related fields here
 });

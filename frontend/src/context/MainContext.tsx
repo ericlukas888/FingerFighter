@@ -15,7 +15,7 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
 
     
     const [countryModal, setCountryModal] = useState<boolean>(JSON.parse(window.localStorage.getItem("countryModal") as string) === false ? false : true);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("countryModal") as string) === null ? null : JSON.parse(window.localStorage.getItem("countryModal") as string));
     const scriptLoaded = useScript('https://telegram.org/js/telegram-web-app.js');
 
     console.log("scriptLoaded", scriptLoaded)
@@ -39,7 +39,8 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
     const contextValue: MainContextProps = {
         countryModal,
         setCountryModal,
-        countryModalHandler
+        countryModalHandler,
+        user
     };
 
     return <MainContext.Provider value={contextValue}>{children}</MainContext.Provider>

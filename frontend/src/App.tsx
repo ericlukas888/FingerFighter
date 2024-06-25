@@ -12,6 +12,7 @@ import { PreLoader } from './components/Preloader';
 import LandingPage from './pages/LandingPage';
 import EndlessRunnerGame from './pages/games/endless_runner';
 import { MainContextProvider } from './context/MainContext';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 function App() {
   return (
@@ -19,19 +20,21 @@ function App() {
       <PreLoader isOpen={false} />
       <BrowserRouter>
         <MainContextProvider>
-          <Routes>
-            <Route path='/' element={<LandingPage />} />
-            <Route element={<MainLayout />}>
-              <Route path='/games' element={<MainPage />} />
-              <Route path='/mine' element={<MinePage />} />
-              <Route path='/friends' element={<FriendsPage />} />
-              <Route path='/earn' element={<EarnPage />} />
-              <Route path='/wallet' element={<WalletPage />} />
-              <Route path='/level' element={<LevelPage />} />
-              {/* Games */}
-              <Route path='/games/endless_runner' element={<EndlessRunnerGame />} />
-            </Route>
-          </Routes>
+          <TonConnectUIProvider manifestUrl='https://finger-fighter-frontend.vercel.app/tonconnect-manifest.json'>
+            <Routes>
+              <Route path='/' element={<LandingPage />} />
+              <Route element={<MainLayout />}>
+                <Route path='/games' element={<MainPage />} />
+                <Route path='/mine' element={<MinePage />} />
+                <Route path='/friends' element={<FriendsPage />} />
+                <Route path='/earn' element={<EarnPage />} />
+                <Route path='/wallet' element={<WalletPage />} />
+                <Route path='/level' element={<LevelPage />} />
+                {/* Games */}
+                <Route path='/games/endless_runner' element={<EndlessRunnerGame />} />
+              </Route>
+            </Routes>
+          </TonConnectUIProvider>
         </MainContextProvider>
       </BrowserRouter>
     </div>
