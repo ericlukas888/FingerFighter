@@ -1,10 +1,37 @@
 import { TonConnectButton } from "@tonconnect/ui-react";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import ReactFlagsSelect from "react-flags-select";
+import { toast } from "react-toastify";
+import { useMainContext } from "../context/MainContext";
 
 function ProfilePage() {
     const [selected, setSelected] = useState("");
+    const { setUserInfo, user } = useMainContext();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [userName, setUserName] = useState("");
+
+
+    const getUserInfo = async () => {
+        await axios.get(`${process.env.REACT_APP_API_URL}/users/getUser/${user?.telegramId}`)
+            .then(function (response) {
+                console.log(response.data)
+                setUserInfo(response.data.user)
+                setFirstName(response.data.user.first_name);
+                setLastName(response.data.user.last_name);
+                setUserName(response.data.user.user_name);
+                setSelected(response.data.user.country);;
+            })
+            .catch(function (error) {
+                console.error("error", error);
+            })
+    }
+
+    useEffect(() => {
+        getUserInfo();
+    }, []);
     return (
         <div className="ProfilePage">
             <Container className="mb-5 pt-3">
@@ -13,15 +40,15 @@ function ProfilePage() {
                 <Row>
                     <Col xs={6} className="mb-3">
                         <Form.Label>First Name</Form.Label>
-                        <Form.Control />
+                        <Form.Control onChange={(e) => {setFirstName(e.target.value)}} value={firstName} className="bg-transparent text-white" />
                     </Col>
                     <Col xs={6} className="mb-3">
                         <Form.Label>Last Name</Form.Label>
-                        <Form.Control />
+                        <Form.Control onChange={(e) => {setLastName(e.target.value)}} value={lastName} className="bg-transparent text-white" />
                     </Col>
                     <Col xs={12} className="mb-3">
                         <Form.Label>User Name</Form.Label>
-                        <Form.Control />
+                        <Form.Control value={userName} className="bg-transparent text-white" readOnly />
                     </Col>
                     <Col xs={12} className="mb-3">
                         <Form.Label>Country</Form.Label>
@@ -29,14 +56,6 @@ function ProfilePage() {
                             selected={selected}
                             onSelect={(code: string) => setSelected(code)}
                         />
-                    </Col>
-                    <Col xs={12} className="mb-3">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control />
-                    </Col>
-                    <Col xs={12} className="mb-3">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control />
                     </Col>
                 </Row>
                 <TonConnectButton style={{ width: "100%" }} />

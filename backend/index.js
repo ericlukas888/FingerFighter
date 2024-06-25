@@ -1,9 +1,9 @@
 const express = require('express');
 const axios = require('axios');
 const { Sequelize, Op, fn, col } = require('sequelize');
-const User = require('./models/User');
-const GameHistory = require('./models/GameHistory');
-const sequelize = require('./models/db');
+const User = require('./src/models/User');
+const GameHistory = require('./src/models/GameHistory');
+const sequelize = require('./src/models/db');
 const TelegramBot = require('node-telegram-bot-api');
 const dotenv = require('dotenv');
 const { JSDOM } = require('jsdom');
