@@ -29,8 +29,9 @@
 /* Footer Menu Style End */
 
 /* App Style */
-.App {
-  background-image: linear-gradient(to top, #1D3F75, #0C1D42);
+.App,
+.modal-dialog.modal-fullscreen .modal-content {
+  background-image: linear-gradient(to top, #1D3F75, #0C1D42) !important;
   min-height: 100vh;
   color: white;
 }
@@ -69,3 +70,47 @@
 .Preloader .modal-content{
   background: #0C1D42;
 }
+
+
+/* CountryModal style start */
+.ReactFlagsSelect-module_selectBtn__19wW7 {
+  border-color: #7A90C0 !important;
+}
+
+.ReactFlagsSelect-module_selectValue__152eS {
+  color: #7A90C0 !important;
+}
+
+.ReactFlagsSelect-module_selectBtn__19wW7:after {
+  border-top-color: #7A90C0 !important;
+}
+
+.ReactFlagsSelect-module_selectOptions__3LNBJ.ReactFlagsSelect-module_fullWidthOptions__1XeR6 {
+  background: #0C1D42 !important;
+}
+
+.ReactFlagsSelect-module_label__27pw9 {
+  color: #7A90C0 !important;
+}
+
+.country-ranking-table th {
+  background-color: #0C1D42 !important;
+  color: white !important;
+  border: none;
+  border-bottom: 1px solid #7A90C0;
+  text-align: center;
+}
+.country-ranking-table td {
+  color: #7A90C0 !important;
+  border: none;
+  border-bottom: 1px solid #7A90C0;
+}
+
+.main-button {
+  background-image: linear-gradient(to top, #45D0DA, #0C1D42);
+    color: white !important;
+    border: 1px solid #45D0DA !important;
+    box-shadow: 0 0 10px 0px #45D0DA;
+    transition: ease-in 0.2s;
+}
+/* CountryModal style end */

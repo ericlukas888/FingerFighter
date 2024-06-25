@@ -26,7 +26,16 @@ const User = sequelize.define('User', {
     status: {
         type: DataTypes.BOOLEAN,
         allowNull: false
-    }
+    },
+    walletAddress: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    walletPrivateKey: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+
     
     // Add other user-related fields here
 });

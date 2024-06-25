@@ -10,9 +10,9 @@ function FooterMenu() {
                     <CardBody>
                         <Row className="flex flex-nowrap">
                             <Col>
-                                <NavLink to="/" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
+                                <NavLink to="/games" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
                                     <FaPersonRunning   />
-                                    <span className="mt-1">Race</span>
+                                    <span className="mt-1">Games</span>
                                 </NavLink>
                             </Col>
                             <Col>

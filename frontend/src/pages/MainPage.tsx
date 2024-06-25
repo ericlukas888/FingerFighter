@@ -1,4 +1,4 @@
-import { Card, CardBody, Col, Container, Image, ProgressBar, Row } from "react-bootstrap";
+import { Button, Card, CardBody, Col, Container, Image, Modal, ProgressBar, Row, Table } from "react-bootstrap";
 import AvatarImage from '../assets/images/avatars/1.png';
 import CoinIcon from '../assets/images/icons/coin.svg';
 import { NavLink } from "react-router-dom";
@@ -8,31 +8,62 @@ import { Rocket } from "../components/rocket";
 import EnergyIcon from '../assets/images/icons/energy.svg';
 import { RaceGame } from "../components/race";
 import { FaRoad, FaBoltLightning, FaClock } from "react-icons/fa6";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
+import EndlessRunnerGame from "./games/endless_runner";
+import { useMainContext } from "../context/MainContext";
+import ReactFlagsSelect from "react-flags-select";
+import { CountryRanking } from "../utils/sampleData";
 
 function MainPage() {
 
-  useEffect(() => {
-    // Extract user data from Telegram WebApp context
-    const telegram = window?.Telegram?.WebApp;
-    const user = telegram?.initDataUnsafe.user;
-
-    // Post user data to the server
-    if (user) {
-        axios.post('/api/users', {
-            telegramId: user.id,
-            name: user.first_name,
-        }).then(response => {
-            console.log('User data saved:', response.data);
-        }).catch(error => {
-            console.error('Error saving user data:', error);
-        });
-    }
-}, []);
+  const { countryModal, countryModalHandler } = useMainContext();
+  const [selected, setSelected] = useState("");
+  console.log("countryModal", countryModal)
+  const selectCountry = () => {
+    console.log("selected", selected)
+    countryModalHandler();
+  }
 
   return (
     <div className="MainPage">
+      <Modal show={countryModal} animation={false} fullscreen>
+        <Modal.Body>
+          <h2 className="text-center">Welcome to</h2>
+          <h2 className="text-center">Finger Fight Olympic Games</h2>
+          <hr />
+          <p className="text-justify">Choose your country and take part in a variety of finger-based challenges to earn points and lead your country to victory in the virtual Olympic competition.</p>
+          <ReactFlagsSelect
+            selected={selected}
+            onSelect={(code: string) => setSelected(code)}
+          />
+          <hr />
+          <h4 className="text-center text-uppercase">Country Ranking</h4>
+          <Table className="country-ranking-table mb-5">
+            <thead>
+              <tr>
+                <th>Ranking</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody>
+              {CountryRanking.map((item, index) => (
+                <tr>
+                  <td className="bg-transparent text-center text-white">{index + 1}</td>
+                  <td className="bg-transparent text-center text-white">{item.name}</td>
+                  <td className="bg-transparent text-center text-white">{item.score}</td>
+                  <td className="bg-transparent text-center text-white">
+                    <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${item.country}.png`} width={30} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Button className="w-100 fw-bold text-uppercase main-button" onClick={selectCountry}>Save Country</Button>
+        </Modal.Body>
+      </Modal>
       <Container className="mb-5 mt-3">
         <Row className="mb-3">
           <Col xs={6} className="text-start">
@@ -44,53 +75,7 @@ function MainPage() {
           <Col xs={6} className="text-end">Binance</Col>
         </Row>
         <hr />
-        {/* <Row className="mb-3">
-          <Col xs={4}>
-            <MainInformationCard title="Earn per tap" value="+13" color="#F79841" />
-          </Col>
-          <Col xs={4}>
-            <MainInformationCard title="Coins to level up" value="2M" color="#6F72E2" />
-          </Col>
-          <Col xs={4}>
-            <MainInformationCard title="Profit per hour" value="+66.53K" color="#84CB69" />
-          </Col>
-        </Row> */}
-        <Row className="mb-3">
-          <Col xs={6} className="d-flex mb-1  flex-row align-items-center justify-content-start">
-            {/* <Image src={CoinIcon} height={60} width={60} className="" alt="icon" /> */}
-            <FaRoad className="fs-1 me-2"/>
-            <span className="fs-1 fw-bold">507,981</span>
-          </Col>
-          <Col xs={6} className="d-flex mb-1  flex-row align-items-center justify-content-end">
-            {/* <Image src={CoinIcon} height={60} width={60} className="" alt="icon" /> */}
-            <FaBoltLightning className="fs-1 me-2"/>
-            <span className="fs-1 fw-bold">507,981</span>
-          </Col>
-          <Col xs={12}>
-            <NavLink to="/level" className="nav-link">
-              <div className="d-flex align-items-center justify-content-between mb-2 level-section">
-                <div className="d-flex align-items-center level-section-title text-white fw-bold"><span>Diamond</span><FaChevronRight /></div>
-                <div><span>Level: </span><span className="level-section-rate text-white fw-bold">5/10</span></div>
-              </div>
-              <ProgressBar now={60} className="rounded-5" />
-            </NavLink>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col xs={12}>
-            {/* <Rocket /> */}
-            <RaceGame/>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6} className="mx-auto">
-            <div className="energy-section p-2 d-flex align-items-center rounded-5 justify-content-center">
-            {/* <Image src={EnergyIcon} height={30} width={30} className="me-2" alt="avatar" /> */}
-            <FaClock className="me-2"/>
-            <span className="fs-5 fw-bold">3000/3000</span>
-            </div>
-          </Col>
-        </Row>
+
       </Container>
     </div>
   );
