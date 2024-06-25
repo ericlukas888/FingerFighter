@@ -13,8 +13,6 @@ function ProfilePage() {
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
     const wallet = useTonAddress();
-    const awallet = useTonAddress(false);
-    const bwallet = useTonWallet();
     console.log("wallet", wallet)
 
     const getUserInfo = async () => {
@@ -35,6 +33,30 @@ function ProfilePage() {
     useEffect(() => {
         getUserInfo();
     }, []);
+
+    const updateProfile = async () => {
+        if(!wallet) {
+            return toast.error("Please connect your wallet before updating your profile.")
+        }
+
+        const body = {
+            telegramId: user.telegramId,
+            firstName: firstName,
+            lastName: lastName,
+            country: selected,
+            walletAddress: wallet
+        }
+
+        await axios.post(`${process.env.REACT_APP_API_URL}/users/updateProfile`, body)
+        .then(function (response) {
+            console.log(response.data)
+            toast.success(response.data.message);
+            setUserInfo(response.data.user)
+          })
+          .catch(function (error) {
+            console.error("error", error)
+          })
+    }
     return (
         <div className="ProfilePage">
             <Container className="mb-5 pt-3">

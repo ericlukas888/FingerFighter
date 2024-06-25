@@ -35,7 +35,7 @@ function MainPage() {
         countryModalHandler();
       })
       .catch(function (error) {
-
+        console.error("error", error)
       })
   }
 
