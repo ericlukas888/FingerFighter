@@ -6,14 +6,15 @@ interface MainContextProps {
     countryModal: boolean;
     setCountryModal: Dispatch<SetStateAction<boolean>>;
     countryModalHandler: Function;
-    user?: any
+    user?: any;
+    setUserInfo: Function;
 }
 
 const MainContext = createContext<MainContextProps | undefined>(undefined);
 
 export const MainContextProvider: React.FunctionComponent<{ children: React.ReactNode }> = ({ children }) => {
 
-    
+
     const [countryModal, setCountryModal] = useState<boolean>(JSON.parse(window.localStorage.getItem("countryModal") as string) === false ? false : true);
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("countryModal") as string) === null ? null : JSON.parse(window.localStorage.getItem("countryModal") as string));
     const scriptLoaded = useScript('https://telegram.org/js/telegram-web-app.js');
@@ -24,23 +25,28 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
         setCountryModal(false);
     }
 
+    const setUserInfo = (data: any) => {
+        window.localStorage.setItem("user", JSON.stringify(data));
+        setUser(data);
+    }
+
     useEffect(() => {
         if (scriptLoaded && window.Telegram) {
-          const tg = window.Telegram.WebApp;
-          tg.ready();
+            const tg = window.Telegram.WebApp;
+            tg.ready();
             console.log("------", tg.initDataUnsafe)
-            window.localStorage.setItem("user", JSON.stringify(tg.initDataUnsafe.user));
-            setUser(tg.initDataUnsafe.user);
+            setUserInfo(tg.initDataUnsafe.user)
         }
-      }, [scriptLoaded]);
+    }, [scriptLoaded]);
 
 
-    
+
     const contextValue: MainContextProps = {
         countryModal,
         setCountryModal,
         countryModalHandler,
-        user
+        user,
+        setUserInfo
     };
 
     return <MainContext.Provider value={contextValue}>{children}</MainContext.Provider>

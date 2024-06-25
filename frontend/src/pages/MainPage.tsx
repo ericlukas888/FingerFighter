@@ -14,10 +14,11 @@ import EndlessRunnerGame from "./games/endless_runner";
 import { useMainContext } from "../context/MainContext";
 import ReactFlagsSelect from "react-flags-select";
 import { CountryRanking, GameDataList } from "../utils/sampleData";
+import { toast } from "react-toastify";
 
 function MainPage() {
 
-  const { countryModal, countryModalHandler, user } = useMainContext();
+  const { countryModal, countryModalHandler, user, setUserInfo } = useMainContext();
   const [selected, setSelected] = useState("");
 
   const selectCountry = async () => {
@@ -29,6 +30,8 @@ function MainPage() {
     await axios.post(`${process.env.REACT_APP_API_URL}/users/setCountry`, body)
       .then(function (response) {
         console.log(response.data)
+        toast.success(response.data.message);
+        setUserInfo(response.data.user)
         countryModalHandler();
       })
       .catch(function (error) {
