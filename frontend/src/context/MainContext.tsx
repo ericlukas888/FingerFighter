@@ -15,7 +15,7 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
 
     
     const [countryModal, setCountryModal] = useState<boolean>(JSON.parse(window.localStorage.getItem("countryModal") as string) === false ? false : true);
-    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user") as string))
+    const [user, setUser] = useState(null);
     const scriptLoaded = useScript('https://telegram.org/js/telegram-web-app.js');
 
     console.log("scriptLoaded", scriptLoaded)
@@ -29,6 +29,8 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
           const tg = window.Telegram.WebApp;
           tg.ready();
             console.log("------", tg.initDataUnsafe.user)
+            window.localStorage.setItem("user", JSON.stringify(tg.initDataUnsafe.user));
+            setUser(tg.initDataUnsafe.user);
         }
       }, [scriptLoaded]);
 

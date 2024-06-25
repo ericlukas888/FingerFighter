@@ -64,7 +64,7 @@ function MainPage() {
           <Button className="w-100 fw-bold text-uppercase main-button" onClick={selectCountry}>Save Country</Button>
         </Modal.Body>
       </Modal>
-      <Container className="mb-5">
+      <Container className="mb-5 pt-3">
         <Row className="mb-3">
           <Col xs={6} className="text-start">
             <div className="d-flex flex-row align-items-center">
