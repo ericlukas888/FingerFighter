@@ -1,7 +1,7 @@
 import { TonConnectButton, useTonAddress, useTonWallet } from "@tonconnect/ui-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import ReactFlagsSelect from "react-flags-select";
 import { toast } from "react-toastify";
 import { useMainContext } from "../context/MainContext";
@@ -82,8 +82,14 @@ function ProfilePage() {
                             onSelect={(code: string) => setSelected(code)}
                         />
                     </Col>
+                    <Col xs={12} className="mb-5">
+                        <Form.Label>Country</Form.Label>
+                        <TonConnectButton style={{ width: "100%" }} />
+                    </Col>
+                    <Col xs={12} className="mb-3">
+                        <Button className="main-button" onClick={updateProfile}>Update Profile</Button>
+                    </Col>
                 </Row>
-                <TonConnectButton style={{ width: "100%" }} />
 
             </Container>
         </div>
