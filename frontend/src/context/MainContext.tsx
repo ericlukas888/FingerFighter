@@ -37,7 +37,8 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
             console.log("------", tg.initDataUnsafe);
             const userInfo = JSON.parse(window.localStorage.getItem("user") as string);
             console.log("userInfo--------", userInfo)
-            if(!userInfo) {
+            if(userInfo === null) {
+                console.log("userInfo--------if condition", userInfo)
                 setUserInfo(tg.initDataUnsafe.user)
             }
         }
