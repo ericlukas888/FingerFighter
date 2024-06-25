@@ -20,9 +20,20 @@ function MainPage() {
   const { countryModal, countryModalHandler, user } = useMainContext();
   const [selected, setSelected] = useState("");
 
-  const selectCountry = () => {
-    console.log("selected", selected)
-    countryModalHandler();
+  const selectCountry = async () => {
+    const body = {
+      // telegramId: user.id,
+      country: selected
+    }
+    console.log("body", body, `${process.env.REACT_APP_API_URL}/users/setCountry`);
+    await axios.post(`${process.env.REACT_APP_API_URL}/users/setCountry`, body)
+      .then(function (response) {
+        console.log(response.data)
+        countryModalHandler();
+      })
+      .catch(function (error) {
+
+      })
   }
 
   return (
@@ -79,13 +90,13 @@ function MainPage() {
         <Row>
           {GameDataList.map((item, index) => (
             <Col xs={12} className="mb-3">
-                <Link to={item.router} className="d-flex nav-link">
-                  <Image className="rounded-3 me-3" src={item.image} width={100} height={100} alt="Game"/>
-                  <div>
-                    <h5>{item.name}</h5>
-                    <p>{item.description}</p>
-                  </div>
-                </Link>
+              <Link to={item.router} className="d-flex nav-link">
+                <Image className="rounded-3 me-3" src={item.image} width={100} height={100} alt="Game" />
+                <div>
+                  <h5>{item.name}</h5>
+                  <p>{item.description}</p>
+                </div>
+              </Link>
             </Col>
           ))}
         </Row>

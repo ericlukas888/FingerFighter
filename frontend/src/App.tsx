@@ -13,14 +13,27 @@ import LandingPage from './pages/LandingPage';
 import EndlessRunnerGame from './pages/games/endless_runner';
 import { MainContextProvider } from './context/MainContext';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
       <PreLoader isOpen={false} />
       <BrowserRouter>
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="dark" />
         <MainContextProvider>
-          <TonConnectUIProvider manifestUrl='https://finger-fighter-frontend.vercel.app/tonconnect-manifest.json' actionsConfiguration={{twaReturnUrl: 'https://t.me/FingerFighterBot'}}>
+          <TonConnectUIProvider manifestUrl='https://finger-fighter-frontend.vercel.app/tonconnect-manifest.json' actionsConfiguration={{ twaReturnUrl: 'https://t.me/FingerFighterBot' }}>
             <Routes>
               <Route path='/' element={<LandingPage />} />
               <Route element={<MainLayout />}>
