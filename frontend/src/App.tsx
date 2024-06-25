@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 import MinePage from './pages/MinePage';
 import FriendsPage from './pages/FriendsPage';
 import EarnPage from './pages/EarnPage';
-import WalletPage from './pages/WalletPage';
+import ProfilePage from './pages/ProfilePage';
 import MainLayout from './components/layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LevelPage from './pages/LevelPage';
@@ -41,7 +41,7 @@ function App() {
                 <Route path='/mine' element={<MinePage />} />
                 <Route path='/friends' element={<FriendsPage />} />
                 <Route path='/earn' element={<EarnPage />} />
-                <Route path='/wallet' element={<WalletPage />} />
+                <Route path='/profile' element={<ProfilePage />} />
                 <Route path='/level' element={<LevelPage />} />
                 /* Games */
                 <Route path='/games/endless_runner/' element={<EndlessRunnerGame />} />

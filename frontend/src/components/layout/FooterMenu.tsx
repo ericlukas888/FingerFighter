@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { FaUsers, FaGamepad, FaWallet, FaSackDollar, FaBomb , FaRankingStar , FaPersonRunning   } from "react-icons/fa6";
+import { FaUsers, FaGamepad, FaWallet, FaSackDollar, FaBomb , FaRankingStar , FaUserGear    } from "react-icons/fa6";
 
 function FooterMenu() {
     return (
@@ -15,12 +15,12 @@ function FooterMenu() {
                                     <span className="mt-1">Games</span>
                                 </NavLink>
                             </Col>
-                            <Col>
+                            {/* <Col>
                                 <NavLink to="/mine" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
                                     <FaBomb  />
                                     <span className="mt-1">Mine</span>
                                 </NavLink>
-                            </Col>
+                            </Col> */}
                             <Col>
                                 <NavLink to="/friends" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
                                     <FaRankingStar  />
@@ -34,9 +34,9 @@ function FooterMenu() {
                                 </NavLink>
                             </Col>
                             <Col>
-                                <NavLink to="/wallet" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
-                                    <FaWallet  />
-                                    <span className="mt-1">Wallet</span>
+                                <NavLink to="/profile" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
+                                    <FaUserGear  />
+                                    <span className="mt-1">Profile</span>
                                 </NavLink>
                             </Col>
                         </Row>
