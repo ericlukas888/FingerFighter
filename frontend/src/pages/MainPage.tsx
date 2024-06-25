@@ -86,7 +86,9 @@ function MainPage() {
               <span>{user?.first_name + " " + user?.last_name}</span>
             </div>
           </Col>
-          <Col xs={3} className="text-end">Binance</Col>
+          <Col xs={3} className="text-end">
+          <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${user.country}.png`} width={30} />
+          </Col>
         </Row>
         <hr />
         <h4 className="text-uppercase">Games</h4>
