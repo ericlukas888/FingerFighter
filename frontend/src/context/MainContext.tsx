@@ -6,6 +6,7 @@ interface MainContextProps {
     countryModal: boolean;
     setCountryModal: Dispatch<SetStateAction<boolean>>;
     countryModalHandler: Function;
+    user?: any
 }
 
 const MainContext = createContext<MainContextProps | undefined>(undefined);
@@ -14,6 +15,7 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
 
     
     const [countryModal, setCountryModal] = useState<boolean>(JSON.parse(window.localStorage.getItem("countryModal") as string) === false ? false : true);
+    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user") as string))
     const scriptLoaded = useScript('https://telegram.org/js/telegram-web-app.js');
 
     console.log("scriptLoaded", scriptLoaded)

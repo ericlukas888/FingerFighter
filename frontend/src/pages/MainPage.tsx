@@ -19,7 +19,7 @@ function MainPage() {
 
   const { countryModal, countryModalHandler } = useMainContext();
   const [selected, setSelected] = useState("");
-  console.log("countryModal", countryModal)
+
   const selectCountry = () => {
     console.log("selected", selected)
     countryModalHandler();
@@ -64,7 +64,7 @@ function MainPage() {
           <Button className="w-100 fw-bold text-uppercase main-button" onClick={selectCountry}>Save Country</Button>
         </Modal.Body>
       </Modal>
-      <Container className="mb-5 mt-3">
+      <Container className="mb-5">
         <Row className="mb-3">
           <Col xs={6} className="text-start">
             <div className="d-flex flex-row align-items-center">
