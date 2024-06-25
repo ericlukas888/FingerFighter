@@ -34,8 +34,12 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
         if (scriptLoaded && window.Telegram) {
             const tg = window.Telegram.WebApp;
             tg.ready();
-            console.log("------", tg.initDataUnsafe)
-            setUserInfo(tg.initDataUnsafe.user)
+            console.log("------", tg.initDataUnsafe);
+            const userInfo = JSON.parse(window.localStorage.getItem("user") as string);
+            console.log("userInfo--------", userInfo)
+            if(!userInfo) {
+                setUserInfo(tg.initDataUnsafe.user)
+            }
         }
     }, [scriptLoaded]);
 

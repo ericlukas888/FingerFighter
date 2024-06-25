@@ -74,15 +74,18 @@
 
 /* CountryModal style start */
 .ReactFlagsSelect-module_selectBtn__19wW7 {
-  border-color: #7A90C0 !important;
+  /* border-color: #7A90C0 !important; */
+  border-color: white !important;
 }
 
 .ReactFlagsSelect-module_selectValue__152eS {
-  color: #7A90C0 !important;
+  /* color: #7A90C0 !important; */
+  color: white !important;
 }
 
 .ReactFlagsSelect-module_selectBtn__19wW7:after {
-  border-top-color: #7A90C0 !important;
+  /* border-top-color: #7A90C0 !important; */
+  border-top-color: white !important;
 }
 
 .ReactFlagsSelect-module_selectOptions__3LNBJ.ReactFlagsSelect-module_fullWidthOptions__1XeR6 {
@@ -90,7 +93,8 @@
 }
 
 .ReactFlagsSelect-module_label__27pw9 {
-  color: #7A90C0 !important;
+  /* color: #7A90C0 !important; */
+  color: white !important;
 }
 
 .country-ranking-table th {
