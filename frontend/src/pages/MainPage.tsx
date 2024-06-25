@@ -42,7 +42,7 @@ function MainPage() {
           <Table className="country-ranking-table mb-5">
             <thead>
               <tr>
-                <th>Ranking</th>
+                <th>#</th>
                 <th>Name</th>
                 <th>Score</th>
                 <th>Country</th>
