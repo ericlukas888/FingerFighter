@@ -1,17 +1,19 @@
-import { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useEffect, useMemo, useState } from "react";
+import { ITelegramUser, IWebApp } from "../utils/interface";
 
 interface MainContextProps {
     countryModal: boolean;
     setCountryModal: Dispatch<SetStateAction<boolean>>;
     countryModalHandler: Function;
-
+    // webApp: IWebApp;
+    // user? : ITelegramUser;
 }
 
 const MainContext = createContext<MainContextProps | undefined>(undefined);
 
 export const MainContextProvider: React.FunctionComponent<{ children: React.ReactNode }> = ({ children }) => {
 
-    const [webApp, setWebApp] = useState(null);
+    const [webApp, setWebApp] = useState<IWebApp | null>(null);
     const [countryModal, setCountryModal] = useState<boolean>(JSON.parse(window.localStorage.getItem("countryModal") as string) === false ? false : true);
 
     const countryModalHandler = () => {
@@ -20,19 +22,18 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
     }
 
     useEffect(() => {
-        const app = (window as any).Teleram?.WebApp;
-        console.log("app",app)
+        const app = (window as any).Telegram?.WebApp;
         if (app) {
-            app.ready();
-            setWebApp(app);
+          app.ready();
+          setWebApp(app);
         }
-    }, []);
+      }, []);
 
     const contextValue: MainContextProps = {
         countryModal,
         setCountryModal,
         countryModalHandler
-    }
+    };
 
     return <MainContext.Provider value={contextValue}>{children}</MainContext.Provider>
 }

@@ -5,7 +5,7 @@ import FooterMenu from "./FooterMenu";
 function MainLayout() {
     return (
         <div className="MainLayout">
-            <Appbar/>
+            {/* <Appbar/> */}
             <Outlet/>
             <FooterMenu/>
         </div>
