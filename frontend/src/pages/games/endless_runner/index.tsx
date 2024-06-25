@@ -9,18 +9,18 @@ function EndlessRunnerGame() {
 
     const { unityProvider, sendMessage, addEventListener, removeEventListener } =
         useUnityContext({
-            loaderUrl: "games/endless_runner/Build/finger.loader.js",
-            dataUrl: "games/endless_runner/Build/finger.data",
-            frameworkUrl: "games/endless_runner/Build/finger.framework.js",
-            codeUrl: "games/endless_runner/Build/finger.wasm",
+            loaderUrl: "Build/finger.loader.js",
+            dataUrl: "Build/finger.data",
+            frameworkUrl: "Build/finger.framework.js",
+            codeUrl: "Build/finger.wasm",
         });
     return (
         <div className="EndlessRunnerGame mb-5 pt-3">
             <Container>
                 <h5>Finger Tap Race</h5>
                 <hr/>
+            <Unity unityProvider={unityProvider} style={{width: "100%", height: "80vh"}}/>
             </Container>
-            <Unity unityProvider={unityProvider} />
         </div>
     );
 }
