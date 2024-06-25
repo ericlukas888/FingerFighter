@@ -22,7 +22,7 @@ function MainPage() {
 
   const selectCountry = async () => {
     const body = {
-      // telegramId: user.id,
+      telegramId: user.id,
       country: selected
     }
     console.log("body", body, `${process.env.REACT_APP_API_URL}/users/setCountry`);
