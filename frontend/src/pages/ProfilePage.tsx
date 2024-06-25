@@ -87,7 +87,7 @@ function ProfilePage() {
                         <TonConnectButton style={{ width: "100%" }} />
                     </Col>
                     <Col xs={12} className="mb-3">
-                        <Button className="main-button" onClick={updateProfile}>Update Profile</Button>
+                        <Button className="main-button w-100" onClick={updateProfile}>Update Profile</Button>
                     </Col>
                 </Row>
 
