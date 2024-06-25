@@ -31,7 +31,7 @@ function App() {
                 <Route path='/wallet' element={<WalletPage />} />
                 <Route path='/level' element={<LevelPage />} />
                 /* Games */
-                <Route path='/games/endless_runner' element={<EndlessRunnerGame />} />
+                <Route path='/games/endless_runner/' element={<EndlessRunnerGame />} />
               </Route>
             </Routes>
           </TonConnectUIProvider>

@@ -1,9 +1,9 @@
 const cacheName = "DefaultCompany-Finger Fighter 1.0-0.1";
 const contentToCache = [
-    "Build/Build.loader.js",
-    "Build/Build.framework.js.gz",
-    "Build/Build.data.gz",
-    "Build/Build.wasm.gz",
+    "Build/finger.loader.js",
+    "Build/finger.framework.js",
+    "Build/finger.data",
+    "Build/finger.wasm",
     "TemplateData/style.css"
 
 ];
