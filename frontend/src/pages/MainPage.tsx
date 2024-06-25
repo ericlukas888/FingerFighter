@@ -87,7 +87,7 @@ function MainPage() {
             </div>
           </Col>
           <Col xs={3} className="text-end">
-          <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${user.country}.png`} width={30} />
+          <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${user?.country}.png`} width={30} />
           </Col>
         </Row>
         <hr />
