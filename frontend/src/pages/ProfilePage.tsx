@@ -1,4 +1,4 @@
-import { TonConnectButton, useTonWallet } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress, useTonWallet } from "@tonconnect/ui-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
@@ -12,7 +12,9 @@ function ProfilePage() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
-    const wallet = useTonWallet();
+    const wallet = useTonAddress();
+    const awallet = useTonAddress(false);
+    const bwallet = useTonWallet();
     console.log("wallet", wallet)
 
     const getUserInfo = async () => {
