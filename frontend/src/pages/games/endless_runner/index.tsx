@@ -27,20 +27,7 @@ function EndlessRunnerGame() {
     const [history, setHistory] = useState<GameHistoryProps | null>(null);
     const [score, setScore] = useState(0)
 
-    const startGame = async () => {
-        const body = {
-            userId: user?.id,
-            gameId: 1
-        }
-        await axios.post(`${process.env.REACT_APP_API_URL}/gamehistory/startGame`, body)
-            .then(function (response) {
-                console.log("startGame----", response.data.history)
-                setHistory(response.data.history);
-            })
-            .catch(function (error) {
-                console.log("error", error)
-            })
-    }
+    
 
     const endGame = async () => {
         const body = {
@@ -74,9 +61,20 @@ function EndlessRunnerGame() {
         });
 
     
-    const gameStartAction = async () => {
-        await startGame();
-        sendMessage('GameManager', 'SetInformation', `${user?.id},${history?.id}`)
+    const startGame = async () => {
+        const body = {
+            userId: user?.id,
+            gameId: 1
+        }
+        await axios.post(`${process.env.REACT_APP_API_URL}/gamehistory/startGame`, body)
+            .then(function (response) {
+                console.log("startGame----", response.data.history)
+                setHistory(response.data.history);
+                sendMessage('GameManager', 'SetInformation', `${user?.id},${response.data.history?.id}`)
+            })
+            .catch(function (error) {
+                console.log("error", error)
+            })
     }
 
     
@@ -85,8 +83,8 @@ function EndlessRunnerGame() {
             <Container>
                 <h5>Finger Tap Race</h5>
                 <hr />
-                <Button className="main-button w-100" onClick={gameStartAction}>Start Game</Button>
-                <Unity unityProvider={unityProvider} style={{ width: "100%", height: "80vh" }} />
+                <Button className="main-button w-100" onClick={startGame}>Start Game</Button>
+                <Unity unityProvider={unityProvider} style={{ width: "100%", height: "100vh" }} />
             </Container>
         </div>
     );
