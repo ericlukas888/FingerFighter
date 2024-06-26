@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useMainContext } from "../../../context/MainContext";
 import axios from "axios";
@@ -85,6 +85,7 @@ function EndlessRunnerGame() {
             <Container>
                 <h5>Finger Tap Race</h5>
                 <hr />
+                <Button className="main-button w-100" onClick={gameStartAction}>Start Game</Button>
                 <Unity unityProvider={unityProvider} style={{ width: "100%", height: "80vh" }} />
             </Container>
         </div>
