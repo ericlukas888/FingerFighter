@@ -59,7 +59,7 @@ function ProfilePage() {
     }
     return (
         <div className="ProfilePage">
-            <Container className="mb-5 pt-3">
+            <Container className="pb-5 pt-3">
                 <h4 className="text-center text-uppercase">Profile</h4>
                 <hr />
                 <Row>

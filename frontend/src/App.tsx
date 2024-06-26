@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import MinePage from './pages/MinePage';
-import FriendsPage from './pages/FriendsPage';
-import EarnPage from './pages/EarnPage';
+import RankingPage from './pages/RankingPage';
+import RewardPage from './pages/RewardPage';
 import ProfilePage from './pages/ProfilePage';
 import MainLayout from './components/layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,8 +39,8 @@ function App() {
               <Route element={<MainLayout />}>
                 <Route path='/games' element={<MainPage />} />
                 <Route path='/mine' element={<MinePage />} />
-                <Route path='/friends' element={<FriendsPage />} />
-                <Route path='/earn' element={<EarnPage />} />
+                <Route path='/ranking' element={<RankingPage />} />
+                <Route path='/rewards' element={<RewardPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
                 <Route path='/level' element={<LevelPage />} />
                 /* Games */

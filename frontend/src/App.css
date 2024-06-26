@@ -118,3 +118,12 @@
     transition: ease-in 0.2s;
 }
 /* CountryModal style end */
+
+/* RewardCard style start */
+.reward-card {
+  background-color: #1D3F75 !important;
+  border-color: #7A90C0 !important;
+  color: white !important;
+
+}
+/* RewardCard style end */

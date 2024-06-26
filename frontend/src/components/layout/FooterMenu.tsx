@@ -22,13 +22,13 @@ function FooterMenu() {
                                 </NavLink>
                             </Col> */}
                             <Col>
-                                <NavLink to="/friends" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
+                                <NavLink to="/ranking" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
                                     <FaRankingStar  />
                                     <span className="mt-1">Ranking</span>
                                 </NavLink>
                             </Col>
                             <Col>
-                                <NavLink to="/earn" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
+                                <NavLink to="/rewards" className="nav-link fs-3 d-flex align-items-center flex-column border border-1 p-1 rounded-2">
                                     <FaSackDollar  />
                                     <span className="mt-1">Rewards</span>
                                 </NavLink>
