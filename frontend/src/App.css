@@ -1,5 +1,5 @@
 .dropdown-toggle::after {
-  display: none !important;
+  /* display: none !important; */
 }
 
 /* Footer Menu Style Start */

@@ -13,7 +13,8 @@ function ProfilePage() {
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
     const wallet = useTonAddress();
-    console.log("wallet", wallet)
+    const wallet1 = useTonWallet();
+    console.log("wallet", wallet, wallet1?.account.address)
 
     const getUserInfo = async () => {
         await axios.get(`${process.env.REACT_APP_API_URL}/users/getUser/${user?.telegramId}`)

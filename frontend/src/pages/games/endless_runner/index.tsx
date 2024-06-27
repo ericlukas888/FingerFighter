@@ -84,6 +84,7 @@ function EndlessRunnerGame() {
                 <h5>Finger Tap Race</h5>
                 <hr />
                 <Button className="main-button w-100" onClick={startGame}>Start Game</Button>
+                <Button className="main-button w-100" onClick={endGame}>End Game</Button>
                 <Unity unityProvider={unityProvider} style={{ width: "100%", height: "100vh" }} />
             </Container>
         </div>
