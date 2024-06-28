@@ -31,7 +31,7 @@ function RankingPage() {
     }, [selectGame, selectTime]);
 
     return (
-        <div className="RankingPage">
+        <div className="RankingPage pb-5">
             <Container className="pb-5 pt-3">
                 <h4 className="text-center text-uppercase">Ranking</h4>
                 <hr />

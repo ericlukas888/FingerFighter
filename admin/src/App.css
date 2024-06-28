@@ -1,0 +1,49 @@
+.MainCard {
+  border-color: #0066FF !important;
+}
+
+.MainCard .card-header {
+  background: #002e72;
+}
+
+.MainCard .card-body {
+  background: #031b44;
+}
+
+.Main-btn {
+  border-color: #0066FF !important;
+  color: white !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(transparent, #0066ffbd);
+}
+
+/* .rdt_Pagination .sc-lnsjTu select,
+.rdt_Pagination .sc-lnsjTu svg {
+  display: none;
+} */
+
+.rdt_Pagination .sc-lnsjTu select option {
+  background: #131C2B;
+}
+
+.Toastify .Toastify__toast-container div[data-in="true"] {
+  background: #131c2b;
+  border: 1px solid #0066ff;
+  border-radius: 0;
+}
+
+.ReactFlagsSelect-module_selectBtn__19wW7 {
+  border-color: #495057 !important;
+  border-radius: 0 !important;
+  color: white !important;
+  padding: 2.55px 10px !important;
+}
+
+.ReactFlagsSelect-module_selectOptions__3LNBJ {
+  background-color: #031b44 !important;
+  border-color: #495057 !important;
+}
+
+.ReactFlagsSelect-module_selectOptionWithlabel__2GpmM:hover {
+  background-color: #002e72 !important;
+}

@@ -6,7 +6,7 @@ import { FaCircleCheck  } from "react-icons/fa6";
 
 function RewardPage() {
     return (
-        <div className="RewardPage">
+        <div className="RewardPage pb-5">
             <Container className="pb-5 pt-3">
             <h4 className="text-center text-uppercase">Rewards</h4>
             <hr />

@@ -54,10 +54,10 @@ function EndlessRunnerGame() {
 
     const { unityProvider, sendMessage, addEventListener, removeEventListener } =
         useUnityContext({
-            loaderUrl: "Build/finger.loader.js",
-            dataUrl: "Build/finger.data",
-            frameworkUrl: "Build/finger.framework.js",
-            codeUrl: "Build/finger.wasm",
+            loaderUrl: "Build/Marathon.loader.js",
+            dataUrl: "Build/Marathon.data",
+            frameworkUrl: "Build/Marathon.framework.js",
+            codeUrl: "Build/Marathon.wasm",
         });
 
     
@@ -83,9 +83,9 @@ function EndlessRunnerGame() {
             <Container>
                 <h5>Finger Tap Race</h5>
                 <hr />
-                <Button className="main-button w-100" onClick={startGame}>Start Game</Button>
-                <Button className="main-button w-100" onClick={endGame}>End Game</Button>
-                <Unity unityProvider={unityProvider} style={{ width: "100%", height: "100vh" }} />
+                {/* <Button className="main-button w-100" onClick={startGame}>Start Game</Button>
+                <Button className="main-button w-100" onClick={endGame}>End Game</Button> */}
+                <Unity unityProvider={unityProvider} style={{ width: "100%", height: "80vh" }} />
             </Container>
         </div>
     );
