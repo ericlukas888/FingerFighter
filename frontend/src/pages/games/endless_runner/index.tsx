@@ -25,11 +25,11 @@ interface Window {
 function EndlessRunnerGame() {
     const { user } = useMainContext();
     const [history, setHistory] = useState<GameHistoryProps | null>(null);
-    const [score, setScore] = useState(0)
+    // const [score, setScore] = useState(0)
 
     
 
-    const endGame = async () => {
+    const endGame = async (score:any) => {
         const body = {
             historyId: history?.id,
             score: score
@@ -44,10 +44,11 @@ function EndlessRunnerGame() {
     }
 
     useEffect(() => {
-        (window as any).receiveDataFromUnity = (jsonString: string) => {
-            const data: DataObject = JSON.parse(jsonString);
-            console.log('Data received from Unity:', data);
-            setScore(data.score);
+        (window as any).receiveDataFromUnity = (score: any) => {
+            // const data: DataObject = JSON.parse(jsonString);
+            console.log('Data received from Unity:', score);
+            // setScore(data.score);
+            endGame(score);
             // You can now use the data as needed in your React application
         };
     }, [window])
@@ -70,12 +71,16 @@ function EndlessRunnerGame() {
             .then(function (response) {
                 console.log("startGame----", response.data.history)
                 setHistory(response.data.history);
-                sendMessage('GameManager', 'SetInformation', `${user?.id},${response.data.history?.id}`)
+                // sendMessage('GameManager', 'SetInformation', `${user?.id},${response.data.history?.id}`)
             })
             .catch(function (error) {
                 console.log("error", error)
             })
     }
+
+    useEffect(() => {
+        startGame();
+    }, []);
 
     
     return (
