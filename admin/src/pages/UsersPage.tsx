@@ -4,7 +4,7 @@ import { NavbarComponent } from "../components/navbarComponent";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import MainCard from "../components/card";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { UserItemProps } from "../utils/interface";
 import { UsersTable } from "../components/table";
 
@@ -54,7 +54,4 @@ export default function UsersPage() {
             </Container>
         </div >
     );
-    return(
-        <></>
-    )
 }

@@ -1,6 +1,10 @@
+import { NavbarComponent } from "../components/navbarComponent";
+
 function GamePage() {
-    return(
-        <></>
+    return (
+        <div className="GamePage">
+            <NavbarComponent />
+        </div >
     )
 }
 

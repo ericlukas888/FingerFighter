@@ -44,8 +44,8 @@ function App() {
             <Route path='/' element={<LoginPage />} />            
             <Route path='/register' element={<RegisterPage />} />       
             <Route path='/users'  element={<UsersPage/>}/>
-            <Route path='/ranking' element={<RankingPage/>}/>
-            <Route path='/reward' element={<RewardPage/>}/>
+            <Route path='/rankings' element={<RankingPage/>}/>
+            <Route path='/rewards' element={<RewardPage/>}/>
             <Route path='/games' element={<GamePage/>}/>
           </Route>
         </Routes>

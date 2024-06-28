@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component"
 import { TransactionListItemProps } from "../pages/HomePage";
-import { UserItemProps } from "../utils/interface";
+import { RankingItemProps, UserItemProps } from "../utils/interface";
 import { Button, ButtonGroup, Col, Form, Image, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 import MainCard from "./card";
@@ -149,6 +149,10 @@ interface DataProps {
     data: UserItemProps[]
 }
 
+interface RankingDataProps {
+    data: RankingItemProps[];
+}
+
 
 
 
@@ -168,16 +172,16 @@ export const UsersTable: React.FC<DataProps> = (data) => {
 
     useEffect(() => {
         const handleResize = () => {
-          setWindowWidth(window.innerWidth);
+            setWindowWidth(window.innerWidth);
         };
-    
+
         window.addEventListener('resize', handleResize);
-    
+
         // Cleanup the event listener on component unmount
         return () => {
-          window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
-      }, []);
+    }, []);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -187,15 +191,15 @@ export const UsersTable: React.FC<DataProps> = (data) => {
     const headers = {
         authorization: `${token}`,
         'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache',
-    'Expires': '0'
+        'Pragma': 'no-cache',
+        'Expires': '0'
     }
 
     const columns: TableColumn<UserItemProps>[] = [
         {
             name: 'No',
             selector: (row, index) => (index ?? -1) + 1,
-            width:windowWidth >= 768 ? "7%" : ""
+            width: windowWidth >= 768 ? "7%" : ""
         },
         {
             name: 'telegramId',
@@ -215,20 +219,20 @@ export const UsersTable: React.FC<DataProps> = (data) => {
         },
         {
             name: 'WalletAddress',
-            cell: row => row.walletAddress && (row.walletAddress)?.slice(0,4)+ "..."+(row.walletAddress)?.slice(-4)
+            cell: row => row.walletAddress && (row.walletAddress)?.slice(0, 4) + "..." + (row.walletAddress)?.slice(-4)
         },
         {
             name: 'Country',
-            cell: row => <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${row.country}.png`} height={25}/>
-        },        
+            cell: row => <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${row.country}.png`} height={25} />
+        },
         {
             name: 'Status',
             cell: row => row.status === true ? <span>🟢</span> : <span>🔴</span>,
-            width:windowWidth >= 768 ? "10%" : ""
+            width: windowWidth >= 768 ? "10%" : ""
         },
         {
             name: 'Action',
-            cell: row => <Button className="Main-btn rounded-0 py-0 px-2" onClick={()=> {getUserInfo(row.id)}}>Edit</Button>
+            cell: row => <Button className="Main-btn rounded-0 py-0 px-2" onClick={() => { getUserInfo(row.id) }}>Edit</Button>
         },
     ];
 
@@ -278,20 +282,20 @@ export const UsersTable: React.FC<DataProps> = (data) => {
 
     const getUserInfo = async (userId: number) => {
         await axios.get(`${process.env.REACT_APP_API_URL}/admin/getUserInfo/${userId}`, { headers })
-        .then(function (response) {
-            setTelegramId(response.data.user.telegramId);
-            setFirstName(response.data.user.first_name);
-            setLastName(response.data.user.last_name);
-            setUserName(response.data.user.user_name);
-            setStatus(response.data.user.status);
-            setWalletList(response.data.user.walletAddress);
-            setCountry(response.data.user.country);
-            setUserId(response.data.user.id);
-            handleShow()
-        })
-        .catch(function (error) {
+            .then(function (response) {
+                setTelegramId(response.data.user.telegramId);
+                setFirstName(response.data.user.first_name);
+                setLastName(response.data.user.last_name);
+                setUserName(response.data.user.user_name);
+                setStatus(response.data.user.status);
+                setWalletList(response.data.user.walletAddress);
+                setCountry(response.data.user.country);
+                setUserId(response.data.user.id);
+                handleShow()
+            })
+            .catch(function (error) {
 
-        })
+            })
     }
 
     const updateProfile = async () => {
@@ -305,14 +309,14 @@ export const UsersTable: React.FC<DataProps> = (data) => {
             country: country
         }
         await axios.post(`${process.env.REACT_APP_API_URL}/admin/updateUser`, body, { headers })
-        .then(function (response) {
-            toast.success(response.data.message);   
-            setUserData(response.data.users);
-            handleClose();
-        })
-        .catch(function (error) {
-            toast.success(error.data.message);   
-        })
+            .then(function (response) {
+                toast.success(response.data.message);
+                setUserData(response.data.users);
+                handleClose();
+            })
+            .catch(function (error) {
+                toast.success(error.data.message);
+            })
     }
 
     return (
@@ -336,13 +340,13 @@ export const UsersTable: React.FC<DataProps> = (data) => {
                             <Col xs={12} md={6} lg={4} className="mb-3">
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>First Name</Form.Label>
-                                    <Form.Control className="rounded-0 bg-transparent" value={firstName} onChange={(e) => {setFirstName(e.target.value)}} required />
+                                    <Form.Control className="rounded-0 bg-transparent" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} required />
                                 </Form.Group>
                             </Col>
                             <Col xs={12} md={6} lg={4} className="mb-3">
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Last Name</Form.Label>
-                                    <Form.Control className="rounded-0 bg-transparent" value={lastName} onChange={(e) => {setLastName(e.target.value)}} required />
+                                    <Form.Control className="rounded-0 bg-transparent" value={lastName} onChange={(e) => { setLastName(e.target.value) }} required />
                                 </Form.Group>
                             </Col>
                             <Col xs={12} md={6} lg={4} className="mb-3">
@@ -369,7 +373,7 @@ export const UsersTable: React.FC<DataProps> = (data) => {
                             <Col xs={12} md={6} lg={4} className="mb-3">
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Status</Form.Label>
-                                    <Form.Select aria-label="Default select example" className="bg-transparent rounded-0" onChange={(e) => {setStatus(e.target.value)}}>
+                                    <Form.Select aria-label="Default select example" className="bg-transparent rounded-0" onChange={(e) => { setStatus(e.target.value) }}>
                                         <option value="ture">Active</option>
                                         <option value="false">Disable</option>
                                     </Form.Select>
@@ -383,6 +387,118 @@ export const UsersTable: React.FC<DataProps> = (data) => {
                     </MainCard>
                 </Modal.Body>
             </Modal>
+        </div>
+    )
+}
+
+export const RankingTable: React.FC<RankingDataProps> = (data) => {
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    let token = window.localStorage.getItem('token');
+
+    const headers = {
+        authorization: `${token}`,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+    }
+
+    const columns: TableColumn<RankingItemProps>[] = [
+        {
+            name: 'No',
+            selector: (row, index) => (index ?? -1) + 1,
+            width: windowWidth >= 768 ? "7%" : ""
+        },
+        {
+            name: 'User Name',
+            cell: row => "@" + row.User.user_name
+        },
+        {
+            name: 'First Name',
+            selector: row => row.User.first_name
+        },
+        {
+            name: 'Last Name',
+            selector: row => row.User.last_name
+        },
+        {
+            name: 'Country',
+            cell: row => <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${row.User.country}.png`} height={25} />
+        },
+        {
+            name: 'Score',
+            cell: row => row.maxScore,
+            width: windowWidth >= 768 ? "10%" : ""
+        },
+    ];
+
+    const customStyles = {
+        rows: {
+            style: {
+                minHeight: '32px',
+                background: '#131C2B',
+                color: 'white',
+                border: '1px solid #495057'
+            }
+        },
+        headRow: {
+            style: {
+                background: '#0D1521',
+                color: 'white',
+                border: '1px solid #495057',
+                fontSize: '16px'
+            },
+        },
+        pagination: {
+            style: {
+                paddingLeft: '8px', // override the cell padding for head cells
+                paddingRight: '8px',
+                background: '#131C2B',
+                color: 'white',
+                border: '1px solid #495057',
+            },
+            pageButtonsStyle: {
+                borderRadius: '50%',
+                height: '30px',
+                width: '30px',
+                padding: '3px',
+                margin: '2px',
+                cursor: 'pointer',
+                transition: '0.4s',
+                color: 'white',
+                filter: 'invert(1)'
+            },
+        },
+        cells: {
+            style: {
+                width: '100%',
+            },
+        },
+    };
+
+    return (
+        <div className="TransactionTable">
+            <DataTable
+                columns={columns}
+                data={data.data}
+                pagination
+                customStyles={customStyles}
+            />
         </div>
     )
 }

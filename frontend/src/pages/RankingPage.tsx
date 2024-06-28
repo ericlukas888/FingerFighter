@@ -3,23 +3,41 @@ import { Card, Col, Container, Dropdown, Row, Image } from "react-bootstrap";
 import { Avatar1, Avatar2 } from "../assets";
 import { FaShoePrints } from "react-icons/fa6";
 import axios from "axios";
+import { useMainContext } from "../context/MainContext";
 
 function RankingPage() {
-
+    const {user} = useMainContext();
     const [selectGame, setSelectGame] = useState(1);
     const [selectTime, setSelectTime] = useState<"day" | "week" | "month">("day");
     const [rankingData, setRankingData] = useState<any | null>(null);
+    const [myRanking, setMyRanking] = useState<any>({});
 
     const getRanking = async () => {
 
         await axios.get(`${process.env.REACT_APP_API_URL}/gamehistory/ranking/${selectGame}/${selectTime}`)
         .then(function (response) {
             console.log(response.data)
-            setRankingData(response.data.ranking)
+            setRankingData(response.data.ranking);
+            getMyRanking(response.data.ranking)
           })
           .catch(function (error) {
             console.log("error", error)
           })
+    }
+
+    const getMyRanking = (data:any) => {
+        const searchValue = user.user_name;
+
+        const index = data.findIndex((item:any) => item.User.user_name === searchValue);
+        const itemData = data[index];
+        const _myRanking = {
+            rank: index,
+            score: itemData.maxScore,
+            country: itemData.User.country
+        }
+
+        setMyRanking(_myRanking);
+        console.log("index", itemData)
     }
 
     const formattedDateStr = (date: string) => {
@@ -89,11 +107,11 @@ function RankingPage() {
                                     <div className="d-flex align-items-center">
                                         <Image src={Avatar1} width={75} height={75} className="me-3 border rounded-circle bg-white" />
                                         <div>
-                                            <div className="fs-3 text-uppercase fw-bold mb-2">@userName</div>
-                                            <div className="d-flex align-items-center"><FaShoePrints className="me-2" /> <span>7548125</span></div>
+                                            <div className="fs-3 text-uppercase fw-bold mb-2">@{user.user_name}</div>
+                                            <div className="d-flex align-items-center"><Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${myRanking?.country}.png`} width={20} className="me-2" /><FaShoePrints className="me-2" /> <span>{myRanking?.score}</span></div>
                                         </div>
                                     </div>
-                                    <h1>No.6</h1>
+                                    <h1>No.{myRanking?.rank + 1}</h1>
                                 </div>
                             </Card.Body>
                         </Card>
