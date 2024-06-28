@@ -1,149 +1,12 @@
 import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component"
 import { TransactionListItemProps } from "../pages/HomePage";
-import { GameItemProps, RankingItemProps, UserItemProps } from "../utils/interface";
+import { GameItemProps, RankingItemProps, RewardItemProps, UserItemProps } from "../utils/interface";
 import { Button, ButtonGroup, Col, Dropdown, Form, Image, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 import MainCard from "./card";
 import ReactFlagsSelect from "react-flags-select";
 import { toast } from "react-toastify";
-
-export const WalletTable = () => {
-
-    type DataRow = {
-        no: number,
-        address: string
-    }
-    const columns: TableColumn<DataRow>[] = [
-        {
-            name: 'No',
-            selector: row => row.no
-        },
-        {
-            name: 'Address',
-            selector: row => row.address
-        },
-    ];
-
-    const data = [
-        {
-            no: 1,
-            address: 'HfpM...PASq'
-        },
-        {
-            no: 2,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 3,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 4,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 5,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 6,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 7,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 8,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 9,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 10,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 11,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 12,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-        {
-            no: 13,
-            address: 'HfpMt47kLLLv1euzL9ujCk4QdTkUwFZuRVAtbaYCPASq'
-        },
-    ];
-
-    const customStyles = {
-        rows: {
-            style: {
-                minHeight: '32px',
-                background: '#131C2B',
-                color: 'white',
-                border: '1px solid #495057'
-            }
-        },
-        headRow: {
-            style: {
-                paddingLeft: '8px', // override the cell padding for head cells
-                paddingRight: '8px',
-                background: '#0D1521',
-                color: 'white',
-                border: '1px solid #495057',
-                fontSize: '16px'
-            },
-        },
-        pagination: {
-            style: {
-                paddingLeft: '8px', // override the cell padding for head cells
-                paddingRight: '8px',
-                background: '#131C2B',
-                color: 'white',
-                border: '1px solid #495057',
-            },
-            pageButtonsStyle: {
-                borderRadius: '50%',
-                height: '30px',
-                width: '30px',
-                padding: '3px',
-                margin: '2px',
-                cursor: 'pointer',
-                transition: '0.4s',
-                color: 'white',
-                filter: 'invert(1)'
-            },
-        }
-    };
-
-    const paginationRowsPerPageOptions = {
-        rowsPerPageText: '',
-        rangeSeparatorText: 'de',
-        selectAllRowsItem: false,
-        selectAllRowsItemText: 'Todos',
-        noRowsPerPage: true,
-    }
-
-    return (
-        <div className="WalletTable">
-            <DataTable
-                columns={columns}
-                data={data}
-                pagination
-                customStyles={customStyles}
-                paginationPerPage={5}
-                paginationComponentOptions={paginationRowsPerPageOptions}
-            />
-        </div>
-    )
-}
-
-
 
 interface DataProps {
     data: UserItemProps[]
@@ -151,6 +14,10 @@ interface DataProps {
 
 interface RankingDataProps {
     data: RankingItemProps[];
+}
+
+interface RewardDataProps {
+    data: RewardItemProps[];
 }
 
 
@@ -394,7 +261,10 @@ export const UsersTable: React.FC<DataProps> = (data) => {
 export const RankingTable: React.FC<RankingDataProps> = (data) => {
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+    const [selectedUser, setSelectedUser] = useState([]);
+    const [show, setShow] = useState<boolean>(false);
+    const [title, setTitle] = useState("");
+    const [amount, setAmount] = useState("0");
 
     useEffect(() => {
         const handleResize = () => {
@@ -491,17 +361,84 @@ export const RankingTable: React.FC<RankingDataProps> = (data) => {
         },
     };
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleChange = ({ selectedRows }: { selectedRows: any }) => {
+        const userIds = selectedRows.map((item: any) => item.User.id);
+        console.log('Selected Rows: ', userIds);
+
+        setSelectedUser(userIds)
+    };
+
+    const provideReward = async () => {
+        const body = {
+            userIds: selectedUser,
+            title: title,
+            amount: amount
+        }
+
+        console.log("body-----", body)
+
+        await axios.post(`${process.env.REACT_APP_API_URL}/admin/rewards/provideReward`, body, { headers })
+            .then(function (response) {
+                toast.success(response.data.message);
+                handleClose();
+            })
+            .catch(function (error) {
+            })
+
+    }
+
+
+
     return (
         <div className="TransactionTable">
+            {selectedUser.length > 0 && (
+                <Row>
+                    <Col xs={12} className="text-end mb-3">
+                        <Button className="Main-btn rounded-0" onClick={handleShow}>Reward</Button>
+                    </Col>
+                </Row>
+            )}
             <DataTable
                 columns={columns}
                 data={data.data}
                 pagination
+                selectableRows
                 customStyles={customStyles}
+                onSelectedRowsChange={handleChange}
             />
+            <Modal show={show} onHide={handleClose} centered data-bs-theme="dark" >
+                <Modal.Body className="p-0">
+                    <MainCard title="Reward Provider">
+                        <Row>
+                            <Col xs={12} className="mb-3">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Reward Title</Form.Label>
+                                    <Form.Control className="rounded-0 bg-transparent" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                                </Form.Group>
+                            </Col>
+                            <Col xs={12} className="mb-3">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Reward Amount</Form.Label>
+                                    <Form.Control type="number" className="rounded-0 bg-transparent" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+                                </Form.Group>
+                            </Col>
+                            <Col xs={12} sm={6} className="mb-3 text-center">
+                                <Button className="Main-btn rounded-0 fw-bold px-5 w-100" onClick={provideReward}>Reward</Button>
+                            </Col>
+                            <Col xs={12} sm={6} className="mb-3 text-center">
+                                <Button className="Main-btn rounded-0 fw-bold px-5 w-100" onClick={handleClose}>Cancel</Button>
+                            </Col>
+                        </Row>
+                    </MainCard>
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }
+
 export const GameTable: React.FC = () => {
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -550,27 +487,27 @@ export const GameTable: React.FC = () => {
         'Expires': '0'
     }
 
-    const openModal = async ({type, id}: {type: string, id?:number}) => {
+    const openModal = async ({ type, id }: { type: string, id?: number }) => {
         if (type === "create") {
-                setName("");
-                setDescription("");
-                setImage("");
-                setStatus(true);     
-                setGameId(0);
+            setName("");
+            setDescription("");
+            setImage("");
+            setStatus(true);
+            setGameId(0);
             handleShow();
         }
         else {
             await axios.get(`${process.env.REACT_APP_API_URL}/admin/games/getGameInfo/${id}`, { headers })
-            .then(function (response) {
-                setName(response.data.game.name);
-                setDescription(response.data.game.description);
-                setImage(response.data.game.image);
-                setStatus(response.data.game.status);     
-                setGameId(response.data.game.id);
-            })
-            .catch(function (error) {
+                .then(function (response) {
+                    setName(response.data.game.name);
+                    setDescription(response.data.game.description);
+                    setImage(response.data.game.image);
+                    setStatus(response.data.game.status);
+                    setGameId(response.data.game.id);
+                })
+                .catch(function (error) {
 
-            });
+                });
             handleShow();
         }
     }
@@ -596,7 +533,7 @@ export const GameTable: React.FC = () => {
         },
         {
             name: 'Action',
-            cell: row => <Button className="Main-btn rounded-0 py-0 px-2" onClick={() => { openModal({type:"edit", id: row.id}) }}>Edit</Button>
+            cell: row => <Button className="Main-btn rounded-0 py-0 px-2" onClick={() => { openModal({ type: "edit", id: row.id }) }}>Edit</Button>
         },
     ];
 
@@ -644,7 +581,7 @@ export const GameTable: React.FC = () => {
         },
     };
 
-    
+
 
     const submitInfo = async () => {
         const body = {
@@ -654,14 +591,14 @@ export const GameTable: React.FC = () => {
             image: image,
             status: status
         }
-        await axios.post(`${process.env.REACT_APP_API_URL}/admin/games/${gameId === 0 ? "createGame": "updateGame"}`, body, { headers })
+        await axios.post(`${process.env.REACT_APP_API_URL}/admin/games/${gameId === 0 ? "createGame" : "updateGame"}`, body, { headers })
             .then(function (response) {
                 toast.success(response.data.message);
                 setGameData(response.data.games);
                 handleClose();
             })
             .catch(function (error) {
-                
+
             });
     }
 
@@ -672,7 +609,7 @@ export const GameTable: React.FC = () => {
     return (
         <div className="TransactionTable">
             <Row>
-                <Col xs={12} className="mb-3 text-end"><Button className="Main-btn rounded-0" onClick={() => { openModal({type: "create"}) }}>Create Game</Button></Col>
+                <Col xs={12} className="mb-3 text-end"><Button className="Main-btn rounded-0" onClick={() => { openModal({ type: "create" }) }}>Create Game</Button></Col>
                 <Col xs={12}>
                     <DataTable
                         columns={columns}
@@ -726,6 +663,140 @@ export const GameTable: React.FC = () => {
                     </MainCard>
                 </Modal.Body>
             </Modal>
+        </div>
+    )
+}
+
+export const RewardTable: React.FC<RewardDataProps> = (data) => {
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    let token = window.localStorage.getItem('token');
+
+    const headers = {
+        authorization: `${token}`,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+    }
+
+    const formattedDateStr = (date: string) => {
+        const dateObj = new Date(date);
+
+        // Function to pad single digits with leading zero
+        const padZero = (num: any) => (num < 10 ? '0' : '') + num;
+
+        // Extract components
+        const month = padZero(dateObj.getMonth() + 1); // Months are zero-based
+        const day = padZero(dateObj.getDate());
+        const year = String(dateObj.getFullYear()); // Last two digits of the year
+        const hours = padZero(dateObj.getHours());
+        const minutes = padZero(dateObj.getMinutes());
+        const seconds = padZero(dateObj.getSeconds());
+
+        // Construct the formatted string
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    const columns: TableColumn<RewardItemProps>[] = [
+        {
+            name: 'No',
+            selector: (row, index) => (index ?? -1) + 1,
+            width: windowWidth >= 768 ? "7%" : ""
+        },
+        {
+            name: 'User Name',
+            cell: row => "@" + row.User.user_name
+        },
+        {
+            name: 'First Name',
+            selector: row => row.User.first_name
+        },
+        {
+            name: 'Last Name',
+            selector: row => row.User.last_name
+        },
+        {
+            name: 'Country',
+            cell: row => <Image src={`https://flaglog.com/codes/standardized-rectangle-120px/${row.User.country}.png`} height={25} />
+        },
+        {
+            name: 'Amount',
+            cell: row => row.amount,
+            width: windowWidth >= 768 ? "10%" : ""
+        },
+        {
+            name: 'Date',
+            cell: row => formattedDateStr(row.createdAt),
+        },
+    ];
+
+    const customStyles = {
+        rows: {
+            style: {
+                minHeight: '32px',
+                background: '#131C2B',
+                color: 'white',
+                border: '1px solid #495057'
+            }
+        },
+        headRow: {
+            style: {
+                background: '#0D1521',
+                color: 'white',
+                border: '1px solid #495057',
+                fontSize: '16px'
+            },
+        },
+        pagination: {
+            style: {
+                paddingLeft: '8px', // override the cell padding for head cells
+                paddingRight: '8px',
+                background: '#131C2B',
+                color: 'white',
+                border: '1px solid #495057',
+            },
+            pageButtonsStyle: {
+                borderRadius: '50%',
+                height: '30px',
+                width: '30px',
+                padding: '3px',
+                margin: '2px',
+                cursor: 'pointer',
+                transition: '0.4s',
+                color: 'white',
+                filter: 'invert(1)'
+            },
+        },
+        cells: {
+            style: {
+                width: '100%',
+            },
+        },
+    };
+
+    return (
+        <div className="TransactionTable">
+            <DataTable
+                columns={columns}
+                data={data.data}
+                pagination
+                customStyles={customStyles}
+            />
         </div>
     )
 }

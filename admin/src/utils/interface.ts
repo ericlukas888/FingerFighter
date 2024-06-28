@@ -31,3 +31,17 @@ export interface GameItemProps {
     image: ImageBitmap;
     status: boolean;
 }
+
+export interface RewardItemProps {
+    id: number,
+    title: string;
+    amount: number;
+    createdAt: string;
+    User: {
+        first_name: string;
+        last_name: string;
+        user_name: string;
+        walletAddress: string;
+        country: string;
+    }
+}
