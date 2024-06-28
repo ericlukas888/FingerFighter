@@ -84,7 +84,7 @@ function ProfilePage() {
                         />
                     </Col>
                     <Col xs={12} className="mb-5">
-                        <Form.Label>Country</Form.Label>
+                        <Form.Label>Wallet</Form.Label>
                         <TonConnectButton style={{ width: "100%" }} />
                     </Col>
                     <Col xs={12} className="mb-3">

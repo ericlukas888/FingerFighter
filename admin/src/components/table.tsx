@@ -23,13 +23,13 @@ interface RewardDataProps {
 
 
 
-export const UsersTable: React.FC<DataProps> = (data) => {
+export const UsersTable: React.FC = () => {
 
     const [telegramId, setTelegramId] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
-    const [status, setStatus] = useState("ture");
+    const [status, setStatus] = useState(true);
     const [walletAddress, setWalletList] = useState("");
     const [country, setCountry] = useState("");
     const [show, setShow] = useState<boolean>(false);
@@ -147,6 +147,23 @@ export const UsersTable: React.FC<DataProps> = (data) => {
         },
     };
 
+    const getUserList = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/getAllUsers`, { headers });
+            console.log(response.data.users);
+            setUserData(response.data.users);
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
+
+    useEffect(() => {
+        getUserList();
+    }, []);
+    useEffect(() => {
+        getUserList();
+    }, [show]);
+
     const getUserInfo = async (userId: number) => {
         await axios.get(`${process.env.REACT_APP_API_URL}/admin/getUserInfo/${userId}`, { headers })
             .then(function (response) {
@@ -178,7 +195,6 @@ export const UsersTable: React.FC<DataProps> = (data) => {
         await axios.post(`${process.env.REACT_APP_API_URL}/admin/updateUser`, body, { headers })
             .then(function (response) {
                 toast.success(response.data.message);
-                setUserData(response.data.users);
                 handleClose();
             })
             .catch(function (error) {
@@ -190,7 +206,7 @@ export const UsersTable: React.FC<DataProps> = (data) => {
         <div className="TransactionTable">
             <DataTable
                 columns={columns}
-                data={data.data}
+                data={userData}
                 pagination
                 customStyles={customStyles}
             />
@@ -240,10 +256,15 @@ export const UsersTable: React.FC<DataProps> = (data) => {
                             <Col xs={12} md={6} lg={4} className="mb-3">
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Status</Form.Label>
-                                    <Form.Select aria-label="Default select example" className="bg-transparent rounded-0" onChange={(e) => { setStatus(e.target.value) }}>
-                                        <option value="ture">Active</option>
-                                        <option value="false">Disable</option>
-                                    </Form.Select>
+                                    <Dropdown>
+                                        <Dropdown.Toggle id="dropdown-basic" className="w-100 d-flex align-items-center justify-content-between rounded-0 bg-transparent">
+                                            {status === true ? "🟢 Active" : "🔴 Disable"}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className="w-100 rounded-0">
+                                            <Dropdown.Item onClick={() => { setStatus(true) }}>🟢 Active</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => { setStatus(false) }}>🔴 Disable</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </Form.Group>
                             </Col>
                             <Col xs={12} sm={12} className="mb-3 text-center">
