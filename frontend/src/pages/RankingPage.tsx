@@ -7,7 +7,7 @@ import axios from "axios";
 function RankingPage() {
 
     const [selectGame, setSelectGame] = useState(1);
-    const [selectTime, setSelectTime] = useState<"day" | "week" | "month">("week");
+    const [selectTime, setSelectTime] = useState<"day" | "week" | "month">("day");
     const [rankingData, setRankingData] = useState<any | null>(null);
 
     const getRanking = async () => {
@@ -20,6 +20,24 @@ function RankingPage() {
           .catch(function (error) {
             console.log("error", error)
           })
+    }
+
+    const formattedDateStr = (date: string) => {
+        const dateObj = new Date(date);
+
+        // Function to pad single digits with leading zero
+        const padZero = (num: any) => (num < 10 ? '0' : '') + num;
+        
+        // Extract components
+        const month = padZero(dateObj.getMonth() + 1); // Months are zero-based
+        const day = padZero(dateObj.getDate());
+        const year = String(dateObj.getFullYear()).slice(-2); // Last two digits of the year
+        const hours = padZero(dateObj.getHours());
+        const minutes = padZero(dateObj.getMinutes());
+        const seconds = padZero(dateObj.getSeconds());
+        
+        // Construct the formatted string
+        return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
     }
 
     useEffect(() => {
@@ -87,17 +105,23 @@ function RankingPage() {
                         rankingData?.map((item:any, index:number) => (
                             <Col xs={12} className="mb-3">
                                 <Card className="reward-card">
-                                    <Card.Body className="py-1">
+                                    <Card.Body className="py-2">
                                         <Row className="align-items-center">
                                             <Col xs={2} className="border-end fw-bold fs-5">{index + 1}</Col>
-                                            <Col xs={6}>
+                                            <Col xs={7}>
                                                 <div className="d-flex align-items-center">
                                                     <Image src={Avatar2} width={40} height={40} className="me-3 border rounded-circle bg-white" />
-                                                    <div className="fw-bold">{item.User.first_name} {item.User.last_name}</div>
+                                                    <div className="d-flex flex-column justify-content-between">
+                                                        <div className="fw-bold">{item.User.first_name} {item.User.last_name}</div>
+                                                        <div className="">
+                                                            <Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${item.User.country}.png`} width={20} className="me-1" />
+                                                            <small>{formattedDateStr(item.updatedAt)}</small>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </Col>
-                                            <Col xs={4}>
-                                                <div className="d-flex align-items-center"><FaShoePrints className="me-2" /> <span>{item.maxScore}</span></div>
+                                            <Col xs={3}>
+                                                <div className="d-flex align-items-center justify-content-end"><FaShoePrints className="me-2" /> <span>{item.maxScore}</span></div>
                                             </Col>
                                         </Row>
                                     </Card.Body>
