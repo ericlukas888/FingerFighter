@@ -107,7 +107,7 @@ function RankingPage() {
                                     <div className="d-flex align-items-center">
                                         <Image src={Avatar1} width={75} height={75} className="me-3 border rounded-circle bg-white" />
                                         <div>
-                                            <div className="fs-3 text-uppercase fw-bold mb-2">@{user.user_name}</div>
+                                            <div className="fs-3 text-uppercase fw-bold mb-2">@{user?.user_name}</div>
                                             <div className="d-flex align-items-center"><Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${myRanking?.country}.png`} width={20} className="me-2" /><FaShoePrints className="me-2" /> <span>{myRanking?.score}</span></div>
                                         </div>
                                     </div>

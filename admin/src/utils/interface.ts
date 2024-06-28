@@ -23,3 +23,11 @@ export interface RankingItemProps {
         country: string;
     }
 }
+
+export interface GameItemProps {
+    id: number;
+    name: string;
+    description: string;
+    image: ImageBitmap;
+    status: boolean;
+}
