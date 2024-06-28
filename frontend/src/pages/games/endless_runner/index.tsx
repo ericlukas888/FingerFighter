@@ -53,6 +53,12 @@ function EndlessRunnerGame() {
             endGame(score);
             // You can now use the data as needed in your React application
         };
+        (window as any).startGame = () => {
+            startGame();
+        };
+        (window as any).restartGame = () => {
+            startGame();
+        };
     }, [window])
 
     const { unityProvider, sendMessage, addEventListener, removeEventListener } =
