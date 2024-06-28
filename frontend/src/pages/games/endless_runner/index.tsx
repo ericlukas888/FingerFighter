@@ -26,12 +26,14 @@ function EndlessRunnerGame() {
     const { user } = useMainContext();
     const [history, setHistory] = useState<GameHistoryProps | null>(null);
     // const [score, setScore] = useState(0)
+    let historyId : any;
 
     
 
     const endGame = async (score:any) => {
         const body = {
-            historyId: history?.id,
+            // historyId: history?.id,
+            historyId: historyId,
             score: score
         }
         await axios.post(`${process.env.REACT_APP_API_URL}/gamehistory/endGame`, body)
@@ -71,6 +73,7 @@ function EndlessRunnerGame() {
             .then(function (response) {
                 console.log("startGame----", response.data.history)
                 setHistory(response.data.history);
+                historyId = response.data.history.id;
                 // sendMessage('GameManager', 'SetInformation', `${user?.id},${response.data.history?.id}`)
             })
             .catch(function (error) {
