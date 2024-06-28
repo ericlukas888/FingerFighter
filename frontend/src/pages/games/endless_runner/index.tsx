@@ -87,10 +87,6 @@ function EndlessRunnerGame() {
             })
     }
 
-    useEffect(() => {
-        startGame();
-    }, []);
-
     
     return (
         <div className="EndlessRunnerGame mb-5 pt-3">
