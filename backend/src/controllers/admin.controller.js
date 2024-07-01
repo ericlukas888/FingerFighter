@@ -190,8 +190,8 @@ module.exports = {
                 attributes: [
                     'userId',
                     [fn('MAX', col('score')), 'maxScore'],
-                    'start_date',
-                    'updatedAt'
+                    [fn('MIN', col('start_date')), 'start_date'],
+                    [fn('MAX', col('end_date')), 'updatedAt'],
                 ],
                 where: {
                     start_date: {
@@ -229,8 +229,8 @@ module.exports = {
                 attributes: [
                     'userId',
                     [fn('MAX', col('score')), 'maxScore'],
-                    'start_date',
-                    'updatedAt'
+                    [fn('MIN', col('start_date')), 'start_date'],
+                    [fn('MAX', col('end_date')), 'updatedAt'],
                 ],
                 where: {
                     start_date: {
@@ -266,8 +266,8 @@ module.exports = {
                 attributes: [
                     'userId',
                     [fn('MAX', col('score')), 'maxScore'],
-                    'start_date',
-                    'updatedAt'
+                    [fn('MIN', col('start_date')), 'start_date'],
+                    [fn('MAX', col('end_date')), 'updatedAt'],
                 ],
                 where: {
                     start_date: {
