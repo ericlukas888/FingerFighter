@@ -130,10 +130,10 @@ function RankingPage() {
                                                 <div className="d-flex align-items-center">
                                                     <Image src={w_Avatar1} width={40} height={40} className="me-3 border rounded-circle bg-white" />
                                                     <div className="d-flex flex-column justify-content-between">
-                                                        <div className="fw-bold">{item.User.first_name} {item.User.last_name}</div>
+                                                        <div className="fw-bold">{item?.User?.first_name} {item?.User?.last_name}</div>
                                                         <div className="">
-                                                            <Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${item.User.country}.png`} width={20} className="me-1" />
-                                                            <small>{formattedDateStr(item.updatedAt)}</small>
+                                                            <Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${item?.User?.country}.png`} width={20} className="me-1" />
+                                                            <small>{formattedDateStr(item?.updatedAt)}</small>
                                                         </div>
                                                     </div>
                                                 </div>
