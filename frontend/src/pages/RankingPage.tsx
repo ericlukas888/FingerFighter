@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Dropdown, Row, Image } from "react-bootstrap";
-import { Avatar1, Avatar2 } from "../assets";
+import { w_Avatar1, m_Avatar1 } from "../assets";
 import { FaShoePrints } from "react-icons/fa6";
 import axios from "axios";
 import { useMainContext } from "../context/MainContext";
@@ -105,7 +105,7 @@ function RankingPage() {
                             <Card.Body>
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="d-flex align-items-center">
-                                        <Image src={Avatar1} width={75} height={75} className="me-3 border rounded-circle bg-white" />
+                                        <Image src={w_Avatar1} width={75} height={75} className="me-3 border rounded-circle bg-white" />
                                         <div>
                                             <div className="fs-3 text-uppercase fw-bold mb-2">@{user?.user_name}</div>
                                             <div className="d-flex align-items-center"><Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${myRanking?.country}.png`} width={20} className="me-2" /><FaShoePrints className="me-2" /> <span>{myRanking?.score}</span></div>
@@ -128,7 +128,7 @@ function RankingPage() {
                                             <Col xs={2} className="border-end fw-bold fs-5">{index + 1}</Col>
                                             <Col xs={7}>
                                                 <div className="d-flex align-items-center">
-                                                    <Image src={Avatar2} width={40} height={40} className="me-3 border rounded-circle bg-white" />
+                                                    <Image src={w_Avatar1} width={40} height={40} className="me-3 border rounded-circle bg-white" />
                                                     <div className="d-flex flex-column justify-content-between">
                                                         <div className="fw-bold">{item.User.first_name} {item.User.last_name}</div>
                                                         <div className="">

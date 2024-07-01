@@ -15,6 +15,7 @@ import { useMainContext } from "../context/MainContext";
 import ReactFlagsSelect from "react-flags-select";
 import { CountryRanking, GameDataList } from "../utils/sampleData";
 import { toast } from "react-toastify";
+import { w_Avatar1 } from "../assets";
 
 function MainPage() {
 
@@ -82,7 +83,7 @@ function MainPage() {
         <Row className="mb-3">
           <Col xs={9} className="text-start">
             <div className="d-flex flex-row align-items-center">
-              <Image src={AvatarImage} height={30} width={30} className="rounded-5 border me-2" alt="avatar" />
+              <Image src={user?.image === null ? w_Avatar1 : `https://maroon-defiant-badger-629.mypinata.cloud/ipfs/${user?.image}`} height={30} width={30} className="rounded-5 border me-2" alt="avatar" />
               <span>{user?.first_name + " " + user?.last_name}</span>
             </div>
           </Col>

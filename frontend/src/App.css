@@ -144,3 +144,24 @@
 tc-root .go816652413 {
   width: 100% !important;
 }
+
+
+/* Image upload start */
+.upload-btn {
+  position: absolute;
+    bottom: 0;
+    left: 60%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.loading-spinner {
+    position: absolute;
+    bottom: 40%;
+    right: 45%;
+}
+/* Image upload end*/
