@@ -19,8 +19,8 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
    
     const [user, setUser] = useState<any | null>(() => {
         const storedUser = window.localStorage.getItem("user");
-        return storedUser ? JSON.parse(storedUser) : null;
-        // return null
+        // return storedUser ? JSON.parse(storedUser) : null;
+        return null
       });
     const scriptLoaded = useScript('https://telegram.org/js/telegram-web-app.js');
 
@@ -40,8 +40,8 @@ export const MainContextProvider: React.FunctionComponent<{ children: React.Reac
             const tg = window.Telegram.WebApp;
             tg.ready();
             console.log("------", tg.initDataUnsafe);
-            const userInfo = JSON.parse(window.localStorage.getItem("user") as string);
-            // const userInfo = null;
+            // const userInfo = JSON.parse(window.localStorage.getItem("user") as string);
+            const userInfo = null;
             if(userInfo === null) {
                 setUserInfo(tg.initDataUnsafe.user)
             }
