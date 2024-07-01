@@ -30,7 +30,7 @@ function RegisterPage() {
            password: password
         }
 
-        await axios.post(`${process.env.REACT_APP_API_URL}/user/signUp`, body)
+        await axios.post(`${process.env.REACT_APP_API_URL}/admin/signUp`, body)
             .then(function (response) {
                 toast.success(response.data.message);
                 return redirect("/");
