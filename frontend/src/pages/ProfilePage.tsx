@@ -104,8 +104,8 @@ function ProfilePage() {
 
 
     return (
-        <div className="ProfilePage">
-            <Container className="pb-5 pt-3">
+        <div className="ProfilePage pb-5">
+            <Container className="pb-5 pt-3 mb-5">
                 <h4 className="text-center text-uppercase">Profile</h4>
                 <hr />
                 <Row>
@@ -148,7 +148,6 @@ function ProfilePage() {
                         <Button className="main-button w-100" onClick={updateProfile}>Update Profile</Button>
                     </Col>
                 </Row>
-
             </Container>
         </div>
     );

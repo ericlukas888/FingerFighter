@@ -68,7 +68,7 @@ function RankingPage() {
 
     return (
         <div className="RankingPage pb-5">
-            <Container className="pb-5 pt-3">
+            <Container className="pb-5 pt-3 mb-5">
                 <h4 className="text-center text-uppercase">Ranking</h4>
                 <hr />
                 <Row>

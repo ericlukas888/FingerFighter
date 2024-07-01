@@ -89,8 +89,8 @@ function EndlessRunnerGame() {
 
     
     return (
-        <div className="EndlessRunnerGame mb-5 pt-3">
-            <Container>
+        <div className="EndlessRunnerGame pb-5">
+            <Container className="pb-5 mb-5 pt-3">
                 <h5>Finger Tap Race</h5>
                 <hr />
                 {/* <Button className="main-button w-100" onClick={startGame}>Start Game</Button>
