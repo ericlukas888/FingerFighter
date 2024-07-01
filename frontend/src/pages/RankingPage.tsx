@@ -33,7 +33,7 @@ function RankingPage() {
         const _myRanking = {
             rank: index,
             score: itemData.maxScore,
-            country: itemData.User.country
+            country: itemData.User.country,
         }
 
         setMyRanking(_myRanking);
@@ -105,7 +105,7 @@ function RankingPage() {
                             <Card.Body>
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="d-flex align-items-center">
-                                        <Image src={w_Avatar1} width={75} height={75} className="me-3 border rounded-circle bg-white" />
+                                        <Image src={(user?.image === null || user?.image === undefined) ? w_Avatar1 : `https://maroon-defiant-badger-629.mypinata.cloud/ipfs/${user?.image}`} width={75} height={75} className="me-3 border rounded-circle bg-white" />
                                         <div>
                                             <div className="fs-3 text-uppercase fw-bold mb-2">@{user?.user_name}</div>
                                             <div className="d-flex align-items-center"><Image  src={`https://flaglog.com/codes/standardized-rectangle-120px/${myRanking?.country}.png`} width={20} className="me-2" /><FaShoePrints className="me-2" /> <span>{myRanking?.score}</span></div>
@@ -128,7 +128,7 @@ function RankingPage() {
                                             <Col xs={2} className="border-end fw-bold fs-5">{index + 1}</Col>
                                             <Col xs={7}>
                                                 <div className="d-flex align-items-center">
-                                                    <Image src={w_Avatar1} width={40} height={40} className="me-3 border rounded-circle bg-white" />
+                                                    <Image src={(item?.User?.image === null || item?.User?.image === undefined) ? w_Avatar1 : `https://maroon-defiant-badger-629.mypinata.cloud/ipfs/${item?.User?.image}`}  width={40} height={40} className="me-3 border rounded-circle bg-white" />
                                                     <div className="d-flex flex-column justify-content-between">
                                                         <div className="fw-bold">{item?.User?.first_name} {item?.User?.last_name}</div>
                                                         <div className="">

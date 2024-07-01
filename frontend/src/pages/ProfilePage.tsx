@@ -32,6 +32,7 @@ function ProfilePage() {
                 setLastName(response.data.user.last_name);
                 setUserName(response.data.user.user_name);
                 setSelected(response.data.user.country);;
+                setImage(response.data.user.image);
             })
             .catch(function (error) {
                 console.error("error", error);
